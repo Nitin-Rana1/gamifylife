@@ -40,11 +40,17 @@ function LoginOrSignUp() {
   async function logIn() {
     console.log("login Started1");
     const provider = new GoogleAuthProvider();
+    console.log("login Started2");
+
     const userCred = await signInWithPopup(auth, provider);
+    console.log("login Started3");
+
     const q = query(
       collection(db, "usersData"),
       where("authId", "==", userCred.user.uid)
     );
+    console.log("login Started4");
+
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc) => {
@@ -53,7 +59,6 @@ function LoginOrSignUp() {
       setuserData(data);
     });
     if (userData.length == 0) {
-    console.log("login Started2");
       createDB(userCred.user.uid);
     }
   }
