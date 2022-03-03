@@ -38,6 +38,7 @@ function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
   async function logIn() {
+    console.log("login Started1");
     const provider = new GoogleAuthProvider();
     const userCred = await signInWithPopup(auth, provider);
     const q = query(
@@ -52,7 +53,7 @@ function LoginOrSignUp() {
       setuserData(data);
     });
     if (userData.length == 0) {
-      console.log("creatingDB");
+    console.log("login Started2");
       createDB(userCred.user.uid);
     }
   }
