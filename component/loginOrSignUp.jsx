@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import HomePage from "../component/homePage";
 import { useState, useEffect } from "react";
 import Skills from '../lib/skills';
+import styles from './styles/loginOrSignUp.module.scss';
 import {
   collection,
   getDocs,
@@ -75,7 +76,7 @@ function LoginOrSignUp() {
     );
   }
   return (
-    <div>
+    <div className={styles.container1}>
       <button onClick={logIn}>Log In</button>
     </div>
   );

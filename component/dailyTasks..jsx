@@ -54,13 +54,17 @@ function DailyTasks() {
               <b>{value.name}: Level </b>
               <b>{value.level}</b>
               {value.tasks.map((value1, i1) => (
-                <div key={i1}>
-                  {value1.name}{" "}
-                  <button onClick={() => incDecLevel(i, 0.3)}>Done</button>
-                  <i>{value1.desc}</i>
+                <div key={i1} className={styles.card}>
+                  <div className={styles.head}>
+                    <button onClick={() => incDecLevel(i, -0.3)}>
+                      Not Done
+                    </button>
+                    {value1.name}
+                    <button onClick={() => incDecLevel(i, 0.3)}>Done</button>
+                  </div>
+                  <p>{value1.desc}</p>
                 </div>
               ))}
-              <hr />
             </div>
           );
         })}

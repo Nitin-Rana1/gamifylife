@@ -50,11 +50,16 @@ function Profile() {
                     <b>{value.name}: Level </b>
                     <b>{value.level}</b>
                   </summary>
+                  <b>
+
+                  Tasks
+                  </b>
                   {value.tasks.map((value1, i1) => (
                     <div key={i1}>
-                      <details>
+                      <details className={styles.secDetails}>
+                        
                         <summary>{value1.name}</summary>
-                        <i>{value1.desc}</i>
+                        <i className={styles.secDetailsDes}>{value1.desc}</i>
                       </details>
                     </div>
                   ))}
