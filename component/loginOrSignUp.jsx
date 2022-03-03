@@ -42,7 +42,7 @@ function LoginOrSignUp() {
     const provider = new GoogleAuthProvider();
     console.log("login Started2");
 
-    const userCred = await signInWithPopup(auth, provider);
+   await signInWithPopup(auth, provider);
     console.log("login Started3");
 
     const q = query(
