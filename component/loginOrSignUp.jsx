@@ -8,8 +8,8 @@ import { auth, db } from "../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import HomePage from "../component/homePage";
 import { useState, useEffect } from "react";
-import Skills from '../lib/skills';
-import styles from './styles/loginOrSignUp.module.scss';
+import Skills from "../lib/skills";
+import styles from "./styles/loginOrSignUp.module.scss";
 import {
   collection,
   getDocs,
@@ -21,8 +21,6 @@ import {
   limit,
   serverTimestamp,
 } from "firebase/firestore";
-
-
 
 async function createDB(uid) {
   try {
@@ -59,7 +57,7 @@ function LoginOrSignUp() {
     }
   }
   if (loading) {
-    return <div>Initialising User......</div>;
+    return <div className={styles.container2}>Initialising User......</div>;
   }
   if (error) {
     return (
