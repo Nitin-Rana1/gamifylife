@@ -38,19 +38,11 @@ function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
   async function logIn() {
-    console.log("login Started1");
-    const provider = new GoogleAuthProvider();
-    console.log("login Started2");
-
-   await signInWithPopup(auth, provider);
-    console.log("login Started3");
-
+    const userCred = await signInWithPopup(auth, new GoogleAuthProvider());
     const q = query(
       collection(db, "usersData"),
       where("authId", "==", userCred.user.uid)
     );
-    console.log("login Started4");
-
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc) => {
@@ -59,6 +51,7 @@ function LoginOrSignUp() {
       setuserData(data);
     });
     if (userData.length == 0) {
+      console.log("creatingDB");
       createDB(userCred.user.uid);
     }
   }
