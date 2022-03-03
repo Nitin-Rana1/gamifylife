@@ -47,7 +47,6 @@ function DailyTasks() {
   }
   return (
     <div className={styles.container}>
-      <h1>Daily Tasks</h1>
       {userData[0] &&
         userData[0].skills.map((value, i) => {
           return (

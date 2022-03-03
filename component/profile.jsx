@@ -32,13 +32,16 @@ function Profile() {
   console.log(user);
   return (
     <div className={styles.container}>
-      <h1>Profile</h1>
-      {user.displayName}
-      {user.email}
       <img src={user.photoURL} alt='profilepic' />
 
+      <article className={styles.info}>
+        <b>Name: </b> <span>{user.displayName}</span>
+        <b>Email: </b>
+        <span>{user.email}</span>
+      </article>
+      <h1 className={styles.heading}>Skills Acquired</h1>
       {userData.length > 0 && (
-        <h3>
+        <div className={styles.skillsPanel}>
           {userData[0].skills.map((value, i) => {
             return (
               <div key={i}>
@@ -56,12 +59,10 @@ function Profile() {
                     </div>
                   ))}
                 </details>
-
-                <hr />
               </div>
             );
           })}
-        </h3>
+        </div>
       )}
     </div>
   );

@@ -1,4 +1,23 @@
 .container{
-  background-color: hotpink;
-  min-height: 30vh;
+  img{
+    margin-left: 32.5vw;
+    width: 35vw;
+    height: 35vw;
+    clip-path: circle(50% at 50% 50%);
+  }
+  .info{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .skillsPanel{
+    background-color:rgb(140, 140, 224) ;
+  }
+  .heading{
+    font-size: 1.5em;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+  }
 }

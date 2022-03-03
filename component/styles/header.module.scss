@@ -1,0 +1,16 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(19, 96, 148);
+  color: honeydew;
+  height: 6vh;
+  font-size: 1.1em;
+  align-items: center;
+  font-weight: 500;
+  button{
+    background-color: coral;
+    border-radius: 25px;
+    padding: 5px 10px;
+    color: white;
+  }
+}

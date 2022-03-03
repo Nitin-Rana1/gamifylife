@@ -22,9 +22,7 @@ import {
 } from "firebase/firestore";
 
 
-const logout = () => {
-  signOut(auth);
-};
+
 async function createDB(uid) {
   try {
     const docRef = await addDoc(collection(db, "usersData"), {
@@ -72,8 +70,6 @@ function LoginOrSignUp() {
   if (user) {
     return (
       <div>
-        <p>Current User: {user.email}</p>
-        <button onClick={logout}>Log out</button>
         <HomePage />
       </div>
     );
