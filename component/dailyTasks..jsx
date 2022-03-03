@@ -1,5 +1,5 @@
 import { db, auth } from "../fireb/firebApp";
-import styles from "./styles/homePage.module.scss";
+import styles from "./styles/dailyTasks.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import {
@@ -36,9 +36,9 @@ function DailyTasks() {
     const userDoc = doc(db, "usersData", userData[0].id);
     let userDataCopy = userData;
     let skillsArray = userDataCopy[0].skills;
-    for (let j = 0; j<skillsArray.length; j++){
-      if (j == i){
-        skillsArray[i].level += 1;
+    for (let j = 0; j < skillsArray.length; j++) {
+      if (j == i) {
+        skillsArray[i].level += n;
       }
     }
     await updateDoc(userDoc, {
@@ -51,23 +51,15 @@ function DailyTasks() {
         userData[0].skills.map((value, i) => {
           return (
             <div key={i}>
-              <details>
-                <summary>
-                  <b>{value.name}: Level </b>
-                  <b>{value.level}</b>
-                </summary>
-                {value.tasks.map((value1, i1) => (
-                  <div key={i1}>
-                    <details>
-                      <summary>
-                        {value1.name}{" "}
-                        <button onClick={() => incDecLevel(i, 1)}>Done</button>
-                      </summary>
-                      <i>{value1.desc}</i>
-                    </details>
-                  </div>
-                ))}
-              </details>
+              <b>{value.name}: Level </b>
+              <b>{value.level}</b>
+              {value.tasks.map((value1, i1) => (
+                <div key={i1}>
+                  {value1.name}{" "}
+                  <button onClick={() => incDecLevel(i, 0.3)}>Done</button>
+                  <i>{value1.desc}</i>
+                </div>
+              ))}
               <hr />
             </div>
           );
