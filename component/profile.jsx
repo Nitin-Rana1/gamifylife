@@ -43,12 +43,13 @@ function Profile() {
       {userData.length > 0 && (
         <div className={styles.skillsPanel}>
           {userData[0].skills.map((value, i) => {
+            let level = (Math.trunc(value.level*100))/100;
             return (
               <div key={i}>
                 <details>
                   <summary>
                     <b>{value.name}: Level </b>
-                    <b>{value.level}</b>
+                    <b>{level}</b>
                   </summary>
                   <b>
 

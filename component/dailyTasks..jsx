@@ -49,10 +49,11 @@ function DailyTasks() {
     <div className={styles.container}>
       {userData[0] &&
         userData[0].skills.map((value, i) => {
+          let level = (Math.trunc(value.level*100))/100;
           return (
             <div key={i}>
               <b>{value.name}: Level </b>
-              <b>{value.level}</b>
+              <b>{level}</b>
               {value.tasks.map((value1, i1) => (
                 <div key={i1} className={styles.card}>
                   <div className={styles.head}>
