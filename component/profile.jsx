@@ -3,13 +3,7 @@ import styles from "./styles/profile.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import {
-  collection,
-  getDocs,
-  query,
-  where,
   onSnapshot,
-  orderBy,
-  limit,
   doc,
 } from "firebase/firestore";
 

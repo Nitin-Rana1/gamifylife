@@ -12,6 +12,7 @@ import Skills from "../lib/skills";
 import styles from "./styles/loginOrSignUp.module.scss";
 import {
   serverTimestamp,
+  getDoc,
   doc,
   setDoc,
 } from "firebase/firestore";

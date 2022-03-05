@@ -29,7 +29,7 @@ function DailyTasks() {
     });
   }, []);
   async function incDecLevel(i, n) {
-    const userDoc = doc(db, "usersData", userData[0].id);
+    const userDoc = doc(db, "usersData", user.uid);
     let userDataCopy = userData;
     let skillsArray = userDataCopy[0].skills;
     for (let j = 0; j < skillsArray.length; j++) {
