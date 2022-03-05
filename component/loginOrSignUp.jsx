@@ -34,7 +34,7 @@ function LoginOrSignUp() {
   const [userData, setuserData] = useState(null);
   async function logIn() {
     const userCred = await signInWithPopup(auth, new GoogleAuthProvider());
-    const docRef = doc(db, "cities", "SF");
+    const docRef = doc(db, "cities", userCred.user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
