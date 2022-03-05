@@ -3,7 +3,7 @@ import styles from "./styles/dailyTasks.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { onSnapshot, doc, updateDoc } from "firebase/firestore";
-
+import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 function DailyTasks() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState(null);
@@ -39,10 +39,10 @@ function DailyTasks() {
                 <div key={i1} className={styles.card}>
                   <div className={styles.head}>
                     <button onClick={() => incDecLevel(i, -0.3)}>
-                      Not Done
+                      <AiFillMinusCircle/>
                     </button>
                     {value1.name}
-                    <button onClick={() => incDecLevel(i, 0.3)}>Done</button>
+                    <button onClick={() => incDecLevel(i, 0.3)}><AiFillPlusCircle/></button>
                   </div>
                   <p>{value1.desc}</p>
                 </div>

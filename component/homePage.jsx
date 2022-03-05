@@ -3,15 +3,16 @@ import Profile from "./profile";
 import Header from "./header";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import styles from './styles/homePage.module.scss';
+import SocialMedia from "./socialMedia";
 function HomePage() {
   return (
     <div className={styles.container}>
       <Header />
-      <Tabs isFitted variant='enclosed'>
-        <TabList mb='1em'>
-          <Tab _selected={{ color: 'green'}}>DailyTasks</Tab>
-          <Tab _selected={{ color: 'green'}}>Profile</Tab>
-          <Tab _selected={{ color: 'green'}}>Social Media</Tab>
+      <Tabs isFitted variant='enclosed' >
+        <TabList mb='1em' >
+          <Tab _selected={{ color: 'green'}} fontSize="1.2em">DailyTasks</Tab>
+          <Tab _selected={{ color: 'green'}} fontSize="1.2em">Profile</Tab>
+          <Tab _selected={{ color: 'green'}} fontSize="1.2em">Social Media</Tab>
 
         </TabList>
         <TabPanels>
@@ -23,7 +24,7 @@ function HomePage() {
           </TabPanel>
           
           <TabPanel>
-            Nothing
+            <SocialMedia/>
           </TabPanel>
         </TabPanels>
       </Tabs>
