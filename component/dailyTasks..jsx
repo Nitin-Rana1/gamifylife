@@ -6,14 +6,11 @@ import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 function DailyTasks() {
   const [user, loading, error] = useAuthState(auth);
-  const [userData, setuserData] = useState([]);
+  const [userData, setuserData] = useState(null);
   useEffect(() => {
     console.log("user", user);
     const unsub = onSnapshot(doc(db, "usersData", user.uid), (doc) => {
       setuserData(doc.data());
-      console.log("data?", doc.data());
-      console.log("in usefeffect");
-      console.log("working");
     });
   }, []);
   async function incDecLevel(i, n) {

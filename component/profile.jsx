@@ -11,7 +11,7 @@ function Profile() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState(null);
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "cities", user.uid), (doc) => {
+    const unsub = onSnapshot(doc(db, "usersData", user.uid), (doc) => {
       setuserData(doc.data());
     });
   }, []);
