@@ -3,9 +3,6 @@ import styles from "./styles/dailyTasks.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import {
-  collection,
-  query,
-  where,
   onSnapshot,
   doc,
   updateDoc,
@@ -15,17 +12,8 @@ function DailyTasks() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
   useEffect(() => {
-    const q = query(
-      collection(db, "usersData"),
-      where("authId", "==", user.uid)
-    );
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ ...doc.data(), id: doc.id });
-      });
-      console.log(data);
-      setuserData(data);
+    const unsub = onSnapshot(doc(db, "cities", user.uid), (doc) => {
+      setuserData(doc.data());
     });
   }, []);
   async function incDecLevel(i, n) {
@@ -43,8 +31,8 @@ function DailyTasks() {
   }
   return (
     <div className={styles.container}>
-      {userData[0] &&
-        userData[0].skills.map((value, i) => {
+      {userData &&
+        userData.skills.map((value, i) => {
           let level = Math.trunc(value.level * 100) / 100;
           return (
             <div key={i}>
