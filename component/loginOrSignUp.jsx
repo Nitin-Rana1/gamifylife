@@ -28,7 +28,6 @@ async function createDB(uid, name, email) {
     console.error("Error adding document: ", e);
   }
 }
-//user
 function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState(null);
@@ -47,6 +46,7 @@ function LoginOrSignUp() {
         userCred.user.displayName,
         userCred.user.email
       );
+    
     }
   }
   if (loading) {
