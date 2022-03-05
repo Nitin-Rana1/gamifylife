@@ -31,7 +31,7 @@ function DailyTasks() {
   }
   return (
     <div className={styles.container}>
-      {/* {userData &&
+      {userData &&
         userData.skills.map((value, i) => {
           let level = Math.trunc(value.level * 100) / 100;
           return (
@@ -52,7 +52,7 @@ function DailyTasks() {
               ))}
             </div>
           );
-        })} */}
+        })}
     </div>
   );
 }
