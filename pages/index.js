@@ -7,12 +7,13 @@ import {
   getAuth,
   signInWithPopup,
   signOut,
+  FacebookAuthProvider
 } from "firebase/auth";
 import { auth, db } from "../fireb/firebApp";
 
 
 async function login() {
-  await signInWithPopup(auth, new GoogleAuthProvider());
+  await signInWithPopup(auth, new FacebookAuthProvider());
 }
 export default function Home() {
   const [user, loading, error] = useAuthState(auth);
