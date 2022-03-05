@@ -34,6 +34,7 @@ async function createDB(uid, name) {
     console.error("Error adding document: ", e);
   }
 }
+//user
 function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
