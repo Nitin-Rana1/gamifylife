@@ -10,6 +10,7 @@ import {
   onSnapshot,
   orderBy,
   limit,
+  doc,
 } from "firebase/firestore";
 
 function Profile() {

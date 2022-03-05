@@ -4,15 +4,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import {
   collection,
-  getDocs,
   query,
   where,
   onSnapshot,
-  orderBy,
-  limit,
   doc,
   updateDoc,
-  deleteField,
 } from "firebase/firestore";
 
 function DailyTasks() {
