@@ -38,11 +38,11 @@ function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
   async function logIn() {
-    // const userCred =
+    const userCred =
      await signInWithPopup(auth, new GoogleAuthProvider());
     const q = query(
       collection(db, "usersData"),
-      // where("authId", "==", userCred.user.uid)
+      where("authId", "==", userCred.user.uid)
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = [];
