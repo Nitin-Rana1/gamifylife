@@ -14,22 +14,12 @@ import {
 
 function Profile() {
   const [user, loading, error] = useAuthState(auth);
-  const [userData, setuserData] = useState([]);
+  const [userData, setuserData] = useState(null);
   useEffect(() => {
-    const q = query(
-      collection(db, "usersData"),
-      where("authId", "==", user.uid)
-    );
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ ...doc.data(), id: doc.id });
-      });
-      console.log(data);
-      setuserData(data);
+    const unsub = onSnapshot(doc(db, "cities", user.uid), (doc) => {
+      setuserData(doc.data());
     });
   }, []);
-  console.log(user);
   return (
     <div className={styles.container}>
       <img src={user.photoURL} alt='profilepic' />
@@ -40,10 +30,10 @@ function Profile() {
         <span>{user.email}</span>
       </article>
       <h1 className={styles.heading}>Skills Acquired</h1>
-      {userData.length > 0 && (
+      {userData && (
         <div className={styles.skillsPanel}>
-          {userData[0].skills.map((value, i) => {
-            let level = (Math.trunc(value.level*100))/100;
+          {userData.skills.map((value, i) => {
+            let level = Math.trunc(value.level * 100) / 100;
             return (
               <div key={i}>
                 <details>
@@ -51,14 +41,10 @@ function Profile() {
                     <b>{value.name}: Level </b>
                     <b>{level}</b>
                   </summary>
-                  <b>
-
-                  Tasks
-                  </b>
+                  <b>Tasks</b>
                   {value.tasks.map((value1, i1) => (
                     <div key={i1}>
                       <details className={styles.secDetails}>
-                        
                         <summary>{value1.name}</summary>
                         <i className={styles.secDetailsDes}>{value1.desc}</i>
                       </details>
@@ -74,25 +60,3 @@ function Profile() {
   );
 }
 export default Profile;
-
-// <div className={styles.container}>
-//       {userData.length > 0 && (
-//         <h2>
-//           {userData[0].skills.map((value, i) => {
-//             return (
-//               <div key={i}>
-//                 <b>{value.name}</b>
-//                 <b>{value.level}</b>
-//                 {value.tasks.map((value1, i1) => (
-//                   <div key={i1}>
-//                     <li>{value1.name}</li>
-//                     <i>{value1.desc}</i>
-//                   </div>
-//                 ))}
-//                 <hr />
-//               </div>
-//             );
-//           })}
-//         </h2>
-//       )}
-//     </div>
