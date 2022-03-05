@@ -17,17 +17,9 @@ import {
 } from "firebase/firestore";
 
 async function createDB(uid, name, email) {
-<<<<<<< HEAD
-=======
-  // Add a new document in collection "cities"
->>>>>>> docid
   try {
     await setDoc(doc(db, "usersData", uid), {
       name: name,
-<<<<<<< HEAD
-      authId: uid,
-=======
->>>>>>> docid
       email: email,
       createdAt: serverTimestamp(),
       skills: Skills,
