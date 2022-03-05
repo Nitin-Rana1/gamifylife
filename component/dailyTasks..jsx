@@ -13,6 +13,7 @@ function DailyTasks() {
       setuserData(doc.data());
       console.log("data?", doc.data());
       console.log("in usefeffect");
+      console.log("working");
     });
   }, []);
   async function incDecLevel(i, n) {
