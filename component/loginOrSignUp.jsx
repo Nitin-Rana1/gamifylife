@@ -56,6 +56,7 @@ function LoginOrSignUp() {
     return (
       <div>
         <p>Error: {error}</p>
+        <p>Sorry ):</p>
       </div>
     );
   }
