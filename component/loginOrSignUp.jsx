@@ -22,11 +22,12 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-async function createDB(uid, name) {
+async function createDB(uid, name, email) {
   try {
     const docRef = await addDoc(collection(db, "usersData"), {
       name: name,
       authId: uid,
+      email: email,
       createdAt: serverTimestamp(),
       skills: Skills,
     });
@@ -39,11 +40,10 @@ function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
   async function logIn() {
-    const userCred =
-     await signInWithPopup(auth, new GoogleAuthProvider());
+    const userCred = await signInWithPopup(auth, new GoogleAuthProvider());
     const q = query(
       collection(db, "usersData"),
-      where("authId", "==", userCred.user.uid)
+      where("email", "==", userCred.user.email)
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = [];
@@ -54,7 +54,11 @@ function LoginOrSignUp() {
     });
     if (userData.length == 0) {
       console.log("creatingDB");
-      createDB(userCred.user.uid, userCred.user.displayName);
+      createDB(
+        userCred.user.uid,
+        userCred.user.displayName,
+        userCred.user.email
+      );
     }
   }
   if (loading) {
