@@ -16,7 +16,7 @@ function DailyTasks() {
   async function incDecLevel(i, n) {
     const userDoc = doc(db, "usersData", user.uid);
     let userDataCopy = userData;
-    let skillsArray = userDataCopy[0].skills;
+    let skillsArray = userDataCopy.skills;
     for (let j = 0; j < skillsArray.length; j++) {
       if (j == i) {
         skillsArray[i].level += n;
