@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import LoginOrSignUp from '../component/loginOrSignUp';
 import {auth} from '../fireb/firebApp';
 export default function Home() {
   
@@ -14,7 +13,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <LoginOrSignUp/>
+        
       </main>
 
     </div>
