@@ -2,18 +2,17 @@ import { db, auth } from "../fireb/firebApp";
 import styles from "./styles/dailyTasks.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import {
-  onSnapshot,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 function DailyTasks() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState([]);
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "cities", user.uid), (doc) => {
+    console.log("user", user);
+    const unsub = onSnapshot(doc(db, "usersData", user.uid), (doc) => {
       setuserData(doc.data());
+      console.log("data?", doc.data());
+      console.log("in usefeffect");
     });
   }, []);
   async function incDecLevel(i, n) {
@@ -31,7 +30,7 @@ function DailyTasks() {
   }
   return (
     <div className={styles.container}>
-      {userData &&
+      {/* {userData &&
         userData.skills.map((value, i) => {
           let level = Math.trunc(value.level * 100) / 100;
           return (
@@ -52,7 +51,7 @@ function DailyTasks() {
               ))}
             </div>
           );
-        })}
+        })} */}
     </div>
   );
 }
