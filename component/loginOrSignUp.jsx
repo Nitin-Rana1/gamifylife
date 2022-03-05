@@ -22,10 +22,10 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-async function createDB(uid) {
+async function createDB(uid, name) {
   try {
     const docRef = await addDoc(collection(db, "usersData"), {
-      // name: name,
+      name: name,
       authId: uid,
       createdAt: serverTimestamp(),
       skills: Skills,
@@ -53,7 +53,7 @@ function LoginOrSignUp() {
     });
     if (userData.length == 0) {
       console.log("creatingDB");
-      createDB(userCred.user.uid);
+      createDB(userCred.user.uid, userCred.user.displayName);
     }
   }
   if (loading) {
