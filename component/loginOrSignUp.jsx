@@ -10,12 +10,7 @@ import HomePage from "../component/homePage";
 import { useState, useEffect } from "react";
 import Skills from "../lib/skills";
 import styles from "./styles/loginOrSignUp.module.scss";
-import {
-  serverTimestamp,
-  getDoc,
-  doc,
-  setDoc,
-} from "firebase/firestore";
+import { serverTimestamp, getDoc, doc, setDoc } from "firebase/firestore";
 
 async function createDB(uid, name, email) {
   try {
@@ -34,7 +29,7 @@ function LoginOrSignUp() {
   const [userData, setuserData] = useState(null);
   async function logIn() {
     const userCred = await signInWithPopup(auth, new GoogleAuthProvider());
-    const docRef = doc(db, "cities", userCred.user.uid);
+    const docRef = doc(db, "usersData", userCred.user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
@@ -47,7 +42,6 @@ function LoginOrSignUp() {
         userCred.user.displayName,
         userCred.user.email
       );
-    
     }
   }
   if (loading) {
