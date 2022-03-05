@@ -49,7 +49,7 @@ function DailyTasks() {
     <div className={styles.container}>
       {userData[0] &&
         userData[0].skills.map((value, i) => {
-          let level = (Math.trunc(value.level*100))/100;
+          let level = Math.trunc(value.level * 100) / 100;
           return (
             <div key={i}>
               <b>{value.name}: Level </b>
@@ -73,25 +73,3 @@ function DailyTasks() {
   );
 }
 export default DailyTasks;
-
-// <div className={styles.container}>
-//       {userData.length > 0 && (
-//         <h2>
-//           {userData[0].skills.map((value, i) => {
-//             return (
-//               <div key={i}>
-//                 <b>{value.name}</b>
-//                 <b>{value.level}</b>
-//                 {value.tasks.map((value1, i1) => (
-//                   <div key={i1}>
-//                     <li>{value1.name}</li>
-//                     <i>{value1.desc}</i>
-//                   </div>
-//                 ))}
-//                 <hr />
-//               </div>
-//             );
-//           })}
-//         </h2>
-//       )}
-//     </div>

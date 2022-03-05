@@ -11,22 +11,23 @@ import { useState, useEffect } from "react";
 import Skills from "../lib/skills";
 import styles from "./styles/loginOrSignUp.module.scss";
 import {
-  collection,
-  getDocs,
-  addDoc,
-  query,
-  where,
-  onSnapshot,
-  orderBy,
-  limit,
   serverTimestamp,
+  doc,
+  setDoc,
 } from "firebase/firestore";
 
 async function createDB(uid, name, email) {
+<<<<<<< HEAD
+=======
+  // Add a new document in collection "cities"
+>>>>>>> docid
   try {
-    const docRef = await addDoc(collection(db, "usersData"), {
+    await setDoc(doc(db, "usersData", uid), {
       name: name,
+<<<<<<< HEAD
       authId: uid,
+=======
+>>>>>>> docid
       email: email,
       createdAt: serverTimestamp(),
       skills: Skills,
@@ -38,21 +39,16 @@ async function createDB(uid, name, email) {
 //user
 function LoginOrSignUp() {
   const [user, loading, error] = useAuthState(auth);
-  const [userData, setuserData] = useState([]);
+  const [userData, setuserData] = useState(null);
   async function logIn() {
     const userCred = await signInWithPopup(auth, new GoogleAuthProvider());
-    const q = query(
-      collection(db, "usersData"),
-      where("email", "==", userCred.user.email)
-    );
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push(doc.data());
-      });
-      setuserData(data);
-    });
-    if (userData.length == 0) {
+    const docRef = doc(db, "cities", "SF");
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      setuserData(docSnap.data());
+    } else {
+      console.log("No such document!");
       console.log("creatingDB");
       createDB(
         userCred.user.uid,
