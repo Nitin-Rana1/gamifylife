@@ -11,6 +11,8 @@ function HomePage() {
         <TabList mb='1em'>
           <Tab _selected={{ color: 'green'}}>DailyTasks</Tab>
           <Tab _selected={{ color: 'green'}}>Profile</Tab>
+          <Tab _selected={{ color: 'green'}}>Social Media</Tab>
+
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -18,6 +20,10 @@ function HomePage() {
           </TabPanel>
           <TabPanel>
             <Profile />
+          </TabPanel>
+          
+          <TabPanel>
+            Nothing
           </TabPanel>
         </TabPanels>
       </Tabs>
