@@ -57,7 +57,7 @@ function OnePost({
     document.getElementById('comment').value = '';
     const pollDoc = doc(db, 'messages', id);
     await updateDoc(pollDoc, {
-      comments: [...comments, {commenter: user.uid, comment: comment,profilePic: user.photoURL, }]
+      comments: [...comments, {commenter: user.displayName, comment: comment,profilePic: user.photoURL, }]
     });
   }
   return (
