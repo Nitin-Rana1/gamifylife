@@ -11,10 +11,11 @@ import { useState, useEffect } from "react";
 import Skills from "../lib/skills";
 import styles from "./styles/loginOrSignUp.module.scss";
 import { serverTimestamp, getDoc, doc, setDoc } from "firebase/firestore";
-
-async function createDB(uid, name, email) {
+import { Button, ButtonGroup } from '@chakra-ui/react'
+async function createDB(uid, name, email, photoURL) {
   try {
     await setDoc(doc(db, "usersData", uid), {
+      profilePic: photoURL,
       name: name,
       email: email,
       createdAt: serverTimestamp(),
@@ -32,20 +33,28 @@ function LoginOrSignUp() {
     const docRef = doc(db, "usersData", userCred.user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       setuserData(docSnap.data());
     } else {
-      console.log("No such document!");
-      console.log("creatingDB");
       createDB(
         userCred.user.uid,
         userCred.user.displayName,
-        userCred.user.email
+        userCred.user.email,
+        userCred.user.photoURL
       );
     }
   }
   if (loading) {
-    return <div className={styles.container2}>Initialising User......</div>;
+    return (
+      <div className={styles.container2}>
+        <Button
+          isLoading
+          loadingText='Loading'
+          colorScheme='teal'
+          variant='outline'
+        >
+        </Button>
+      </div>
+    );
   }
   if (error) {
     return (

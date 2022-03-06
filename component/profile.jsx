@@ -2,10 +2,7 @@ import { db, auth } from "../fireb/firebApp";
 import styles from "./styles/profile.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import {
-  onSnapshot,
-  doc,
-} from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
 
 function Profile() {
   const [user, loading, error] = useAuthState(auth);
@@ -17,13 +14,17 @@ function Profile() {
   }, []);
   return (
     <div className={styles.container}>
-      <img src={user.photoURL} alt='profilepic' />
+      {userData && (
+        <>
+          <img src={userData.profilePic} alt='profilepic' />
 
-      <article className={styles.info}>
-        <b>Name: </b> <span>{user.displayName}</span>
-        <b>Email: </b>
-        <span>{user.email}</span>
-      </article>
+          <article className={styles.info}>
+            <b>Name: </b> <span>{user.displayName}</span>
+            <b>Email: </b>
+            <span>{user.email}</span>
+          </article>
+        </>
+      )}
       <h1 className={styles.heading}>Skills Acquired</h1>
       {userData && (
         <div className={styles.skillsPanel}>

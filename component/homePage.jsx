@@ -3,7 +3,7 @@ import Profile from "./profile";
 import Header from "./header";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import styles from './styles/homePage.module.scss';
-import SocialMedia from "./socialMedia";
+import SocialMedia from "./SocialMedia/socialMedia";
 function HomePage() {
   return (
     <div className={styles.container}>
