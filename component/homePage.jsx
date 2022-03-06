@@ -2,18 +2,31 @@ import DailyTasks from "./dailyTasks.";
 import Profile from "./profile";
 import Header from "./header";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import styles from './styles/homePage.module.scss';
+import styles from "./styles/homePage.module.scss";
 import SocialMedia from "./SocialMedia/socialMedia";
+import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
+import { FaTasks } from "react-icons/fa";
 function HomePage() {
   return (
     <div className={styles.container}>
       <Header />
-      <Tabs isFitted variant='enclosed' >
-        <TabList mb='1em' >
-          <Tab _selected={{ color: 'green'}} fontSize="1.2em">DailyTasks</Tab>
-          <Tab _selected={{ color: 'green'}} fontSize="1.2em">Profile</Tab>
-          <Tab _selected={{ color: 'green'}} fontSize="1.2em">Social Media</Tab>
-
+      <Tabs isFitted variant='enclosed'>
+        <TabList mb='1em'>
+          <Tab _selected={{ color: "green" }} fontSize='1.3em'>
+            <b>
+              <FaTasks />
+            </b>
+          </Tab>
+          <Tab _selected={{ color: "green" }} fontSize='1.9em'>
+            <b>
+              <BsFillPersonFill />{" "}
+            </b>
+          </Tab>
+          <Tab _selected={{ color: "green" }} fontSize='1.3em'>
+            <b>
+              <BsPeopleFill className={styles.icon} />
+            </b>
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -22,9 +35,9 @@ function HomePage() {
           <TabPanel>
             <Profile />
           </TabPanel>
-          
+
           <TabPanel>
-            <SocialMedia/>
+            <SocialMedia />
           </TabPanel>
         </TabPanels>
       </Tabs>
