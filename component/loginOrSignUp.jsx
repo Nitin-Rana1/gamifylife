@@ -46,14 +46,18 @@ function LoginOrSignUp() {
   if (loading) {
     return (
       <div className={styles.container2}>
-        <img src='./boy.png' alt='boy' />
-        <br />
-        <Button
-          isLoading
-          loadingText='Loading'
-          colorScheme='teal'
-          variant='outline'
-        ></Button>
+        <p>
+          <span>
+            <img src='./boy.png' alt='boy' />
+          </span>
+          <br />
+          <Button
+            isLoading
+            loadingText='Loading'
+            colorScheme='teal'
+            variant='outline'
+          ></Button>
+        </p>
       </div>
     );
   }
