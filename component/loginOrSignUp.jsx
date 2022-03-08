@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import Skills from "../lib/skills";
 import styles from "./styles/loginOrSignUp.module.scss";
 import { serverTimestamp, getDoc, doc, setDoc } from "firebase/firestore";
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button, ButtonGroup } from "@chakra-ui/react";
 async function createDB(uid, name, email, photoURL) {
   try {
     await setDoc(doc(db, "usersData", uid), {
@@ -46,13 +46,14 @@ function LoginOrSignUp() {
   if (loading) {
     return (
       <div className={styles.container2}>
+        <img src='./boy.png' alt='boy' />
+        <br />
         <Button
           isLoading
           loadingText='Loading'
           colorScheme='teal'
           variant='outline'
-        >
-        </Button>
+        ></Button>
       </div>
     );
   }
