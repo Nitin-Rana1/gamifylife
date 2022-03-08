@@ -5,8 +5,7 @@ import { auth, db } from "../../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import styles from "../SocialMedia/styles/onePost.module.scss";
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect } from "react";
 
 function OnePost({
   profilePic,
@@ -54,10 +53,17 @@ function OnePost({
     else if (n == 1) unlike();
   }
   async function addReply() {
-    document.getElementById('comment').value = '';
-    const pollDoc = doc(db, 'messages', id);
+    document.getElementById("comment").value = "";
+    const pollDoc = doc(db, "messages", id);
     await updateDoc(pollDoc, {
-      comments: [...comments, {commenter: user.displayName, comment: comment,profilePic: user.photoURL, }]
+      comments: [
+        ...comments,
+        {
+          commenter: user.displayName,
+          comment: comment,
+          profilePic: user.photoURL,
+        },
+      ],
     });
   }
   return (
@@ -69,7 +75,9 @@ function OnePost({
         <span>{name}</span>
         <span>{time}</span>
       </header>
-      <main>{msg}</main>
+      <main>
+        <pre>{msg}</pre>
+      </main>
       <div className={styles.likeBar}>
         <span onClick={() => voteLike(0)}>
           {likes} <BiLike className={styles.likeUnIcon} />
@@ -111,7 +119,7 @@ function OnePost({
                   <span>
                     <b>{val.commenter}</b>
                     <br />
-                    {val.comment}
+                    <pre>{val.comment}</pre>
                   </span>
                 </div>
               );
