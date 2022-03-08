@@ -1,6 +1,6 @@
 {
-  "name": "PWA App",
-  "short_name": "App",
+  "name": "Level Up Health",
+  "short_name": "Level Up Health",
   "icons": [
     {
       "src": "/icons/app_icon.png",
@@ -9,7 +9,7 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/splash.png",
+      "src": "/icons/app_icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
