@@ -94,7 +94,7 @@ function OnePost({
       <hr />
       {showComments && (
         <p className={styles.commentInput}>
-          <input
+          <textarea
             type='text'
             name='comment'
             id='comment'

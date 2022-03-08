@@ -36,7 +36,7 @@ function SocialMedia() {
   return (
     <div className={styles.container}>
       <div className={styles.createPost}>
-        <input type='text' onChange={(e) => setPostMsg(e.target.value)} />
+        <textarea type='text' onChange={(e) => setPostMsg(e.target.value)} />
         <Button onClick={post} colorScheme='pink' variant='solid'>
           Post
         </Button>
