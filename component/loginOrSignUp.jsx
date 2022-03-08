@@ -48,7 +48,7 @@ function LoginOrSignUp() {
       <div className={styles.container2}>
         <p>
           <span>
-            <img src='./boy.png' alt='boy' />
+            <img src='./icons/app_icon.png' alt='boy' />
           </span>
           <br />
           <Button

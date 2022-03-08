@@ -1,16 +1,17 @@
-.container{
+.container {
   display: flex;
   justify-content: space-between;
-  background-color:#1949b1;
+  background-color: #1949b1;
   color: white;
   height: 8vh;
   font-size: 1.4em;
   align-items: center;
   font-weight: 500;
-  button{
+  button {
+    font-size: 0.7em;
     background-color: coral;
     border-radius: 25px;
-    padding: 5px 10px;
+    padding: 2px 5px;
     color: white;
   }
 }
