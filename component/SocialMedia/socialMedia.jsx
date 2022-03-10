@@ -4,8 +4,14 @@ import { auth, db } from "../../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import AllPosts from "./allPosts";
-import { collection, onSnapshot, doc,addDoc, serverTimestamp } from "firebase/firestore";
-import { Button, ButtonGroup, Heading } from '@chakra-ui/react'
+import {
+  collection,
+  onSnapshot,
+  doc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { Button, ButtonGroup, Heading } from "@chakra-ui/react";
 function SocialMedia() {
   const [postMsg, setPostMsg] = useState("");
   const [user, loading, error] = useAuthState(auth);
@@ -32,7 +38,7 @@ function SocialMedia() {
       console.error("Error adding document: ", e);
     }
   }
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.createPost}>
