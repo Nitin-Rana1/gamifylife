@@ -4,17 +4,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
-function DailyTasks() {
-  const [user, loading, error] = useAuthState(auth);
+function DailyTasks({ userUid }) {
   const [userData, setuserData] = useState(null);
   useEffect(() => {
-    console.log("user", user);
-    const unsub = onSnapshot(doc(db, "usersData", user.uid), (doc) => {
+    const unsub = onSnapshot(doc(db, "usersData", userUid), (doc) => {
       setuserData(doc.data());
     });
   }, []);
   async function incDecLevel(i, n) {
-    const userDoc = doc(db, "usersData", user.uid);
+    const userDoc = doc(db, "usersData", userUid);
     let userDataCopy = userData;
     let skillsArray = userDataCopy.skills;
     for (let j = 0; j < skillsArray.length; j++) {
@@ -39,10 +37,12 @@ function DailyTasks() {
                 <div key={i1} className={styles.card}>
                   <div className={styles.head}>
                     <button onClick={() => incDecLevel(i, -0.3)}>
-                      <AiFillMinusCircle/>
+                      <AiFillMinusCircle />
                     </button>
                     {value1.name}
-                    <button onClick={() => incDecLevel(i, 0.3)}><AiFillPlusCircle/></button>
+                    <button onClick={() => incDecLevel(i, 0.3)}>
+                      <AiFillPlusCircle />
+                    </button>
                   </div>
                   <p>{value1.desc}</p>
                 </div>

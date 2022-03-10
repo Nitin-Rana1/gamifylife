@@ -1,15 +1,33 @@
-.container{
-  span{
+.container {
+  span {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
   }
-  input{
+  input {
     border: 1px solid black;
     border-radius: 25px;
   }
-  .Heading{
+  textarea {
+    border: 1px solid black;
+    border-radius: 25px;
+
+    height: 15vh;
+    width: 60vw;
+  }
+  .Heading {
     text-align: center;
     margin-bottom: 3vh;
+  }
+  .task {
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 3vw;
+    margin-bottom: 4vh;
+  }
+  .taskList {
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 3vw;
   }
 }

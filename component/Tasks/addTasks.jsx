@@ -5,30 +5,40 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../../fireb/firebApp";
 
-function AddTasks() {
+function AddTasks({ userUid }) {
   const [skill, setSkill] = useState("");
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
+  const [taskDesc, setTaskDesc] = useState("none");
   const taskInputRef = useRef(null);
+  const taskDescInputRef = useRef(null);
+
+  const [userData, setuserData] = useState(null);
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, "usersData", userUid), (doc) => {
+      setuserData(doc.data());
+    });
+  }, []);
   function add() {
     if (task == "") return;
-    taskInputRef.current.value = "";
-    setTask("");
-    setTasks([...tasks, task]);
+    setTasks([...tasks, { name: task, desc: taskDesc }]);
     console.log(tasks);
+    taskInputRef.current.value = "";
+    taskDescInputRef.current.value = "";
+    setTaskDesc("");
+    setTask("");
   }
-  function upload() {
-
-  }
-  async function incDecLevel(i, n) {
+  async function upload() {
     const userDoc = doc(db, "usersData", user.uid);
-    let userDataCopy = userData;
-    let skillsArray = userDataCopy.skills;
-    for (let j = 0; j < skillsArray.length; j++) {
-      if (j == i) {
-        skillsArray[i].level += n;
-      }
-    }
+    let newSkill = {
+      name: skill,
+      level: 0,
+      tasks: [
+        { name: "Running", desc: "running is good for health" },
+        { name: "Climb Stairs", desc: "Climbing stairs is good for health" },
+        { name: "Jogging", desc: "Jogging is good starting point" },
+      ],
+    };
     await updateDoc(userDoc, {
       skills: skillsArray,
     });
@@ -46,24 +56,48 @@ function AddTasks() {
         />
       </span>
       <hr />
-      <Heading className={styles.Heading} as='h1' size='md' isTruncated>
-        Tasks
-      </Heading>
-      <span>
-        <input
-          ref={taskInputRef}
-          type='text'
-          onChange={(e) => setTask(e.target.value)}
-        />
-        <Button onClick={add} colorScheme='pink' variant='solid'>
-          +
-        </Button>
-      </span>
-      {tasks.length == 0 && <p>No tasks added!</p>}
-      {tasks.map((val, i) => {
-        return <div key={i}>{val}</div>;
-      })}
-      <hr />
+      <div className={styles.task}>
+        <Heading className={styles.Heading} as='h1' size='md' isTruncated>
+          Tasks
+        </Heading>
+        <span>
+          <label htmlFor='taskName'>Task Name:</label>
+          <input
+            ref={taskInputRef}
+            type='text'
+            onChange={(e) => setTask(e.target.value)}
+          />
+        </span>
+        <br />
+        <span>
+          <textarea
+            ref={taskDescInputRef}
+            type='text'
+            onChange={(e) => setTaskDesc(e.target.value)}
+          />
+          <Button onClick={add} colorScheme='pink' variant='solid'>
+            +
+          </Button>
+        </span>
+      </div>
+      {tasks.length == 0 ? (
+        <p>No tasks added!</p>
+      ) : (
+        <div className={styles.taskList}>
+          {tasks.map((val, i) => {
+            return (
+              <div key={i}>
+                <Heading as='h1' size='sd' isTruncated>
+                  Task {i + 1}
+                </Heading>
+                Name: {val.name}
+                <br />
+                Description: {val.desc}
+              </div>
+            );
+          })}
+        </div>
+      )}
       <Button onClick={upload} colorScheme='blue'>
         Upload
       </Button>
