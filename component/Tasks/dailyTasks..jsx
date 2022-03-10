@@ -1,4 +1,4 @@
-import { db, auth } from "../fireb/firebApp";
+import { db, auth } from "../../fireb/firebApp";
 import styles from "./styles/dailyTasks.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";

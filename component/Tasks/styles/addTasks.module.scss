@@ -1,0 +1,15 @@
+.container{
+  span{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5vh;
+  }
+  input{
+    border: 1px solid black;
+    border-radius: 25px;
+  }
+  .Heading{
+    text-align: center;
+    margin-bottom: 3vh;
+  }
+}

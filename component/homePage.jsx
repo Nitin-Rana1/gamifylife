@@ -1,4 +1,3 @@
-import DailyTasks from "./dailyTasks.";
 import Profile from "./profile";
 import Header from "./header";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
@@ -6,6 +5,7 @@ import styles from "./styles/homePage.module.scss";
 import SocialMedia from "./SocialMedia/socialMedia";
 import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { FaTasks } from "react-icons/fa";
+import Tasks from './Tasks/tasks';
 function HomePage() {
   return (
     <div className={styles.container}>
@@ -30,7 +30,7 @@ function HomePage() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <DailyTasks />
+            <Tasks/>
           </TabPanel>
           <TabPanel>
             <Profile />
