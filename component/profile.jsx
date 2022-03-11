@@ -2,7 +2,8 @@ import { db, auth } from "../fireb/firebApp";
 import styles from "./styles/profile.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import { onSnapshot, doc } from "firebase/firestore";
+import { onSnapshot, doc, updateDoc, arrayRemove } from "firebase/firestore";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
 function Profile() {
   const [user, loading, error] = useAuthState(auth);
@@ -12,6 +13,15 @@ function Profile() {
       setuserData(doc.data());
     });
   }, []);
+  async function delTask(skillI, taskI) {
+    const userDoc = doc(db, "usersData", user.uid);
+    let userDataCopy = userData;
+    let skillsArray = userDataCopy.skills;
+    let delTask = skillsArray[skillI].tasks[taskI];
+    await updateDoc(userDoc, {
+      skills: arrayRemove(delTask),
+    });
+  }
   return (
     <div className={styles.container}>
       {userData && (
@@ -41,7 +51,16 @@ function Profile() {
                   {value.tasks.map((value1, i1) => (
                     <div key={i1}>
                       <details className={styles.secDetails}>
-                        <summary>{value1.name}</summary>
+                        <summary className={styles.summaryFlex}>
+                          {value1.name}
+                          <Button
+                            onClick={()=>delTask(i, i1)}
+                            colorScheme='pink'
+                            variant='solid'
+                          >
+                            Delete
+                          </Button>
+                        </summary>
                         <i className={styles.secDetailsDes}>{value1.desc}</i>
                       </details>
                     </div>

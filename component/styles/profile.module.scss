@@ -1,18 +1,18 @@
-.container{
-  img{
+.container {
+  img {
     margin-left: 35vw;
     width: 30vw;
     height: 30vw;
     clip-path: circle(50% at 50% 50%);
   }
-  .info{
+  .info {
     display: grid;
     grid-template-columns: auto auto;
   }
-  .skillsPanel{
-    background-color:rgb(150, 150, 219) ;
+  .skillsPanel {
+    background-color: rgb(150, 150, 219);
   }
-  .heading{
+  .heading {
     font-size: 1.5em;
     font-weight: 500;
     display: flex;
@@ -20,10 +20,14 @@
     align-items: center;
     height: 10vh;
   }
-  .secDetails{
+  .secDetails {
     margin-left: 5vw;
-    .secDetailsDes{
+    .secDetailsDes {
       margin-left: 10vw;
     }
+  }
+  .summaryFlex {
+    display: flex;
+    justify-content: space-between;
   }
 }

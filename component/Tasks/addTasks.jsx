@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Heading } from "@chakra-ui/react";
 import styles from "./styles/addTasks.module.scss";
 import { Button, ButtonGroup } from "@chakra-ui/react";
-import { onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { onSnapshot, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db, auth } from "../../fireb/firebApp";
 
 function AddTasks({ userUid }) {
@@ -10,6 +10,7 @@ function AddTasks({ userUid }) {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
   const [taskDesc, setTaskDesc] = useState("none");
+  const skillInputRef = useRef(null);
   const taskInputRef = useRef(null);
   const taskDescInputRef = useRef(null);
 
@@ -29,26 +30,34 @@ function AddTasks({ userUid }) {
     setTask("");
   }
   async function upload() {
-    const userDoc = doc(db, "usersData", user.uid);
+    console.log(tasks);
+    console.log(skill);
+    if (skill == "" || tasks.length == 0) return;
+    const userDoc = doc(db, "usersData", userUid);
     let newSkill = {
       name: skill,
       level: 0,
-      tasks: [
-        { name: "Running", desc: "running is good for health" },
-        { name: "Climb Stairs", desc: "Climbing stairs is good for health" },
-        { name: "Jogging", desc: "Jogging is good starting point" },
-      ],
+      tasks: tasks,
     };
     await updateDoc(userDoc, {
-      skills: skillsArray,
+      skills: arrayUnion(newSkill),
     });
+    setSkill("");
+    setTasks([]);
+    taskInputRef.current.value = "";
+    taskDescInputRef.current.value = "";
+    skillInputRef.current.value = "";
+    setTaskDesc("");
+    setTask("");
+    console.log("upload clicked");
   }
   return (
     <div className={styles.container}>
       <Heading className={styles.Heading}>Add Skill</Heading>
       <span>
-        <label htmlFor='skill'>Skill: </label>
+        <label htmlFor='skill'>Skill Name: </label>
         <input
+          ref={skillInputRef}
           onChange={(e) => setSkill(e.target.value)}
           type='text'
           name='skill'

@@ -1,12 +1,9 @@
 import { db, auth } from "../../fireb/firebApp";
-import { useAuthState } from "react-firebase-hooks/auth";
-
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import AddTasks from "./addTasks";
 import DailyTasks from "./dailyTasks.";
 import styles from "./styles/tasks.module.scss";
-function Tasks() {
-  const [user, loading, error] = useAuthState(auth);
+function Tasks({userUid}) {
   return (
     <div className={styles.container}>
       <Tabs isFitted variant='enclosed'>
@@ -20,11 +17,11 @@ function Tasks() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <DailyTasks userUid={user.uid} />
+            <DailyTasks userUid={userUid} />
           </TabPanel>
 
           <TabPanel>
-            <AddTasks userUid={user.uid}/>
+            <AddTasks userUid={userUid}/>
           </TabPanel>
         </TabPanels>
       </Tabs>

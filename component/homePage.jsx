@@ -6,7 +6,7 @@ import SocialMedia from "./SocialMedia/socialMedia";
 import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { FaTasks } from "react-icons/fa";
 import Tasks from './Tasks/tasks';
-function HomePage() {
+function HomePage({userUid}) {
   return (
     <div className={styles.container}>
       <Header />
@@ -30,7 +30,7 @@ function HomePage() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Tasks/>
+            <Tasks userUid = {userUid}/>
           </TabPanel>
           <TabPanel>
             <Profile />

@@ -72,7 +72,7 @@ function LoginOrSignUp() {
   if (user) {
     return (
       <div>
-        <HomePage />
+        <HomePage userUid = {user.uid} />
       </div>
     );
   }
